@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#canvas{
+				position: absolute;
+				z-index: -1;
+				top: 0;
+			}
+			#menu{
+				position: fixed;
+				top: 200px;
+				right: 5px;
+			}
+			#menu ul{
+				position: relative;
+				width: 80px;
+			}
+			#menu li{
+				position: absolute;
+				list-style: none;
+				background-color: darkgrey;
+				text-align: center;
+				border: 1px solid lightgray;
+				border-radius: 5px;
+			}
+			#menu .short{
+				width: 15px;
+				margin-top: 7px;
+				left: 33px;
+				height: 15px;
+				opacity: 0.7;
+			}
+			#menu .long{
+				width: 80px;
+				left: 0;
+				height: 30px;
+				opacity: 0.4;
+			}
+			#menu li a{
+				line-height: 30px;
+				color: white;
+				text-align: center;
+				text-decoration: none;
+			}
+			.item{
+				width: 1200px;
+				height: 550px;
+				/*background: deepskyblue;*/
+				margin: 30px auto;
+				overflow: hidden;
+				/*border: 1px solid black;
+				box-sizing: border-box;*/
+			}
+			#item1{
+				position: relative;
+				height: 619px;
+			}
+			#item1 img{
+				width: 1100px;
+				height: 619px;
+				position: absolute;
+				left: 50px;
+				/*opacity: 0.7;*/
+			}
+			#item1 .me{
+				position: absolute;
+				width: 300px;
+				height: 60px;
+				top: 180px;
+				right: 700px;
+				text-align: center;
+			}
+			#item1 .me span{
+				font-weight: bold;
+				font-size: 30px;
+				display: block;
+			}
+			#item1 ul{
+				position: absolute;
+				bottom: 20px;
+				left: 300px;
+				list-style: none;
+			}
+			#item1 ul li{
+				width: 60px;
+				height: 30px;
+				float: left;
+			}
+			#item1 ul li:nth-child(3){
+				width: 180px;
+			}
+			#item2{
+				height: auto;
+			}
+			#item2 .hobbies{
+				width: 600px;
+				height: 30px;
+				list-style: none;
+				margin: 0 auto;
+				overflow: hidden;
+			}
+			#item2 .hobbies li{
+				width: 200px;
+				height: 30px;
+				text-align: center;
+				float: left;
+				font-weight: 100;
+				font-size: 20px;
+				line-height: 30px;
+				box-sizing: border-box;
+				transition: all 0.5s;
+			}
+			#item2 .hobbies li:hover{
+				background: lightgrey;
+				color: white;
+				font-size: 15px;
+				border-radius: 5px;
+			}
+			#item2 #images{
+				position: relative;
+			}
+			#item2 .box {
+				padding: 15px 0 0 15px;
+				float: left;
+			}
+			
+			#item2 .pic {
+				padding: 10px;
+				border: 1px solid #ccc;
+				border-radius: 5px;
+				box-shadow: 0 0 5px #CCCCCC;
+				position: relative;
+				overflow: hidden;
+			}
+			#item2 .pic a{
+				text-align: center;
+				width: 155px;
+				position: absolute;
+				/*background: url();*/
+				top: 10px;
+				left: 10px;
+			}
+			#item2 .pic a p{
+			
+			}
+			#item2 .pic img {
+				width: 155px;
+				height: auto;
+			}
+			#item3{
+				position: relative;
+			}
+			#item3 #item3_left{
+				position: absolute;
+				top: 95px;
+				left: 60px;
+			}
+			#item3 #item3_left p{
+				width: 600px;
+				height: 150px;
+				font-size: 20px;
+				font-family: "Times New Roman";
+				line-height: 30px;
+			}
+			#item3 #item3_right{
+				position: absolute;
+				top: 80px;
+				right: 100px;
+			}
+			#item3 span{
+				display: block;
+				font-family: "Times New Roman";
+				margin: 15px 0 15px 0;
+			}
+			#item3 .percent{
+				width: 300px;
+				height: 8px;
+				background: grey;
+				border-radius: 5px;
+				overflow: hidden;
+			}
+			#item3 .percent .numerator{
+				height: 6px;
+				margin: 1px 0 0 1px;
+				background: white;
+				border-radius: 3px;
+			}
+			/*#item3 .percent:nth-child(1)>.numerator{
+				width: 250px;
+			}
+			#item3 .percent:nth-child(2)>.numerator{
+				width: 200px;
+			}
+			#item3 .percent:nth-child(3)>.numerator{
+				width: 230px;
+			}
+			#item3 .percent:nth-child(4)>.numerator{
+				width: 180px;
+			}
+			#item3 .percent:nth-child(5)>.numerator{
+				width: 220px;
+			}
+			#item3 .percent:nth-child(6)>.numerator{
+				width: 270px;
+			}*/
+			#item4{
+				height: auto;
+			}
+			#item4 .exp_title{
+				padding: 10px;
+				margin-bottom: 20px;
+				margin-left: 100px;
+			}
+			#item4 p{
+				display: inline-block;
+				font-family: "宋体";
+				font-size: 20px;
+				margin-right: 50px;
+			}
+			#item4 span{
+				color: grey;
+			}
+			#item4 span:hover{
+				cursor: pointer;
+			}
+			#item4 .exp_content{
+				position: relative;
+				width: 900px;
+				height: 150px;
+				margin-left: 100px;
+			}
+			#item4 .exp_content p{
+				position: absolute;
+				left: 270px;
+			}
+			#item4 .exp_content span{
+				position: absolute;
+				right: 0;
+				bottom: 0;
+			}
+			#item4 img{
+				position: absolute;
+				width: 200px;
+				height: auto;
+				padding: 5px;
+				border: 1px solid grey;
+			}
+			#item5{
+				position: relative;
+			}
+			#item5 .contact_img{
+				width: 1002px;
+				height: 102px;
+				border: 1px solid grey;
+				box-sizing: border-box;
+				box-shadow: 1px 1px 1px grey;
+				margin: 140px auto;
+				list-style: none;
+			}
+			#item5 .contact_img li{
+				background: white;
+				width: 200px;
+				height: 100px;
+				float: left;
+				text-align: center;
+				transition: all 1.5s;
+			}
+			#item5 .contact_img li:hover{
+				opacity: 0.5;
+			}
+			#item5 .contact_img li span{
+				font-size: 15px;
+			}
+			#item5 .contact_img li .contact_bg{
+				width: 55px;
+				height: 55px;
+				margin: 0 auto 10px;
+			}
+			#item5 .contact_img li:nth-child(1) .contact_bg{
+				background: url(img/contact.jpg) no-repeat -155px -10px/350px 215px;
+			}
+			#item5 .contact_img li:nth-child(2) .contact_bg{
+				background: url(img/contact.jpg) no-repeat -90px -80px/350px 215px;
+			}
+			#item5 .contact_img li:nth-child(3) .contact_bg{
+				margin: 10px auto 0;
+				background: url(img/contact.jpg) no-repeat -155px -155px/350px 215px;
+			}
+			#item5 .contact_img li:nth-child(4) .contact_bg{
+				background: url(img/contact.jpg) no-repeat -155px -80px/350px 215px;
+			}
+			#item5 .contact_img li:nth-child(5) .contact_bg{
+				background: url(img/contact.jpg) no-repeat -275px -80px/350px 215px;
+			}
+			#item5 p{
+				position: absolute;
+				left: 500px;
+				bottom: 10px;
+				font-size: 10px;
+				color: gray;
+			}
+			#content .item .header{
+				/*border-top: 1px solid black;*/
+				width: 1000px;
+				height: 40px;
+				margin: 10px auto;
+				line-height: 40px;
+				text-align: center;
+				font-family: "Times New Roman";
+				font-size: 25px;
+			}
+			.none{
+				display: none;
+			}
+		</style>
+		<script src="js/jQuery1.9.1.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<canvas id="canvas"></canvas>
+		<div id="menu">
+			<ul>
+				<!--锚点统一使用id-->
+				<li class="long"><a href="#item1">Info</a></li>
+				<li class="short"><a href="#item2"></a></li>
+				<li class="short"><a href="#item3"></a></li>
+				<li class="short"><a href="#item4"></a></li>
+				<li class="short"><a href="#item5"></a></li>
+			</ul>
+		</div>
+		<div id="content">
+			<div id="item1" class="item">
+				<div class="header">
+					Personal Information
+				</div>
+				<img src="img/me.jpg"/>
+				<div class="me">
+					<span>我 叫 雍 斌 凡</span>
+					最大的敌人是放弃
+				</div>
+				<ul>
+					<li>不矮</li>
+					<li>不胖</li>
+					<li>阳光开朗却酷爱暗色调</li>
+				</ul>
+			</div>
+			<div id="item2" class="item">
+				<div class="header">
+					Hobbies
+				</div>
+				<ul class="hobbies">
+					<li>篮球</li>
+					<li>动漫</li>
+					<li>音乐</li>
+				</ul>
+				<div id="images">
+					<div class="box">
+						<div class="pic">
+							<img src="img/1.jpg" />
+							<a href="#">
+								<p></p>
+							</a>
+						</div>
+					</div>
+					<div class="box">
+						<div class="pic">
+							<img src="img/2.jpg" />
+							<a href="#">
+								<p></p>
+							</a>
+						</div>
+					</div>
+					<div class="box">
+						<div class="pic">
+							<img src="img/3.jpg" />
+							<a href="#">
+								<p></p>
+							</a>
+						</div>
+					</div>
+					<div class="box">
+						<div class="pic">
+							<img src="img/4.jpg" />
+							<a href="#">
+								<p></p>
+							</a>
+						</div>
+					</div>
+					<div class="box">
+						<div class="pic">
+							<img src="img/5.jpg" />
+							<a href="#">
+								<p></p>
+							</a>
+						</div>
+					</div>
+					<div class="box">
+						<div class="pic">
+							<img src="img/6.jpg" />
+							<a href="#">
+								<p></p>
+							</a>
+						</div>
+					</div>
+					<div class="box">
+						<div class="pic">
+							<img src="img/7.jpg" />
+							<a href="#">
+								<p></p>
+							</a>
+						</div>
+					</div>
+					<div class="box">
+						<div class="pic">
+							<img src="img/8.jpg" />
+							<a href="#">
+								<p></p>
+							</a>
+						</div>
+					</div>
+					<div class="box">
+						<div class="pic">
+							<img src="img/9.jpg" />
+							<a href="#">
+								<p></p>
+							</a>
+						</div>
+					</div>
+					<div class="box">
+						<div class="pic">
+							<img src="img/10.jpg" />
+							<a href="#">
+								<p></p>
+							</a>
+						</div>
+					</div>
+					<div class="box">
+						<div class="pic">
+							<img src="img/11.jpg" />
+							<a href="#">
+								<p></p>
+							</a>
+						</div>
+					</div>
+					<div class="box">
+						<div class="pic">
+							<img src="img/12.jpg" />
+							<a href="#">
+								<p></p>
+							</a>
+						</div>
+					</div>
+					<div class="box">
+						<div class="pic">
+							<img src="img/13.jpg" />
+							<a href="#">
+								<p></p>
+							</a>
+						</div>
+					</div>
+					<div class="box">
+						<div class="pic">
+							<img src="img/14.jpg" />
+							<a href="#">
+								<p></p>
+							</a>
+						</div>
+					</div>
+					<div class="box">
+						<div class="pic">
+							<img src="img/15.jpg" />
+							<a href="#">
+								<p></p>
+							</a>
+						</div>
+					</div>
+					<div class="box">
+						<div class="pic">
+							<img src="img/16.jpg" />
+							<a href="#">
+								<p></p>
+							</a>
+						</div>
+					</div>
+					<div class="box">
+						<div class="pic">
+							<img src="img/17.jpg" />
+							<a href="#">
+								<p></p>
+							</a>
+						</div>
+					</div>
+					<div class="box">
+						<div class="pic">
+							<img src="img/18.jpg" />
+							<a href="#">
+								<p></p>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="item3" class="item">
+				<div class="header">
+					Skills
+				</div>
+				<div id="item3_left">
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;熟练运用H5+CSS3+Javascript,掌握面向对象编程的思想，掌握jQuery.js,
+						数据库,Java等方面知识,对SEO、JavaScript的性能优化有一定的了解,目前正在自学Vue.js</p>
+					<p>&nbsp;&nbsp;&nbsp;&nbsp;Proficient in H5+CSS3+Javascript, mastering the thought of 
+						object-oriented programming, mastering the knowledge of jQuery. Js, database, Java, etc. I have 
+						a certain understanding of SEO, Javascript performance optimization, and I am learning Vue. Js</p>
+				</div>
+				<div id="item3_right">
+					<span>HTML5&amp;CSS3</span>
+					<div class="percent">
+						<div class="numerator"></div>
+					</div>
+					<span>Javascripts</span>
+					<div class="percent">
+						<div class="numerator"></div>
+					</div>
+					<span>jQuery</span>
+					<div class="percent">
+						<div class="numerator"></div>
+					</div>
+					<span>Vue</span>
+					<div class="percent">
+						<div class="numerator"></div>
+					</div>
+					<span>Java</span>
+					<div class="percent">
+						<div class="numerator"></div>
+					</div>
+					<span>Self-Study</span>
+					<div class="percent">
+						<div class="numerator"></div>
+					</div>
+				</div>				
+			</div>
+			<div id="item4" class="item">
+				<div class="header">
+					Experiences
+				</div>
+				<div class="exp_box">
+					<div class="exp_content none">
+						<img src="img/Animation.gif"/>
+						<p>
+							整个项目由原生js完成。整个项目主要分成四个层次来实现，第一层是方块的公有属性及方法，
+							将其封装成square.js;第二层是方块的私有属性，将其封装成squareFactory.js;
+							第三层是主游戏界面的初始化渲染及数据的检查，将其封装成game.js;
+							第四层是对页面效果的实现，对其它层方法的调用及对键盘的监听，将其封装成loacl.js
+						</p>
+						<span>收起</span>
+					</div>
+					<div class="exp_title">
+						<p>俄罗斯方块单机版</p><span>查看</span>
+					</div>
+				</div>
+				<div class="exp_box">
+					<div class="exp_content none">
+						<img src="img/Animation360.gif"/>
+						<p>
+							(由于录屏成gif导致效果看起来比较卡顿)整个项目由jQuery实现。整个项目的思路是让图片脱标实现对父级框的跟随效果。主要实现效果由
+							各个块上封装的init(初始化)、drag(拖拽)、impact(碰撞检测)、swap(位置交换)、move(移动)来完成。
+						</p>
+						<span>收起</span>
+					</div>
+					<div class="exp_title">
+						<p>360导航拖拽</p><span>查看</span>
+					</div>
+				</div>
+				<div class="exp_box">
+					<div class="exp_content none">
+						<img src="img/Animationnubiya.gif"/>
+						<p>
+							(由于录屏成gif导致效果看起来比较卡顿)整个项目由原生js完成。界面基本完成对努比亚官网的仿写，并在基础上添加了其他的特效。
+							项目中实现的效果有：导航栏移入的二级菜单下拉、轮播图、图片移入的伸缩、随鼠标移动的粒子特效等。
+						</p>
+						<span>收起</span>
+					</div>
+					<div class="exp_title">
+						<p>仿努比亚官网</p><span>查看</span>
+					</div>
+				</div>
+				<div class="exp_box">
+					<div class="exp_content none">
+						<img src="img/Animationtan.gif"/>
+						<p>
+							整个项目由原生js实现。项目实现了蛇的移动、吃食后的生长及碰壁后的死亡。项目主要有HTML5中的
+							canvas实现，配合键盘的监听实现对蛇数组的重绘来实现简易贪吃蛇效果。
+						</p>
+						<span>收起</span>
+					</div>
+					<div class="exp_title">
+						<p>简易贪吃蛇</p><span>查看</span>
+					</div>
+				</div>
+			</div>
+			<div id="item5" class="item">
+				<div class="header">
+					Contact
+				</div>
+				<ul class="contact_img">
+					<li><div class="contact_bg"></div><span>15980896870</span></li>
+					<li><div class="contact_bg"></div><span>1727132050@qq.com</span></li>
+					<li><div class="contact_bg"></div><span>集美大学五社区五号楼311</span></li>
+					<li><div class="contact_bg"></div><span>1727132050</span></li>
+					<li><div class="contact_bg"></div><span>15980896870</span></li>
+				</ul>
+				<p>© 2017 JMUniversity 雍斌凡 | pc端</p>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var checkInLi=false;
+			var timer=null;
+			waterFall();
+			var itemLists=["Info","Hob","Skills","Exp","Contact"];
+			var aLists=$('#menu').find("li");
+			var perList=['250','260','235','200','225','270'];
+			$('.numerator').each(function(index,value){
+				$(this).width(perList[index]);
+			})
+			$('.exp_title>span').each(function(index,value){
+				$(this).on('click',function(){
+					$(this).parent().slideUp();
+					$('.exp_content').eq(index).slideDown();
+				})
+			})
+			$('.exp_content>span').each(function(index,value){
+				$(this).on('click',function(){
+					$(this).parent().slideUp();
+					$('.exp_title').eq(index).slideDown();
+				})
+			})
+//			$('.hobbies li').eq(0).slideUp(0);
+//			$('.hobbies li').eq(1).slideUp(0);
+//			$('.hobbies li').eq(2).slideUp(0);
+			aLists.each(function(index,value){
+				$(this).css({"top":index*35+"px"});
+				//console.log($(this));
+				var a=$(this).find("a");
+				$(this).on("mouseover",function(){
+					//console.log(index);
+					checkInLi=true;
+					$(this).siblings().removeClass("long").addClass("short");
+					$(this).siblings().children().html("");
+					a.html(itemLists[index]);
+					$(this).removeClass("short").addClass("long");
+				}).on("mouseout",function(){
+					checkInLi=false;
+					a.html("");
+					$(this).removeClass("long").addClass("short");
+					timer=setTimeout(function(){
+						if(!checkInLi){
+							checkNow();
+						}
+						timer=null;
+					},250)					
+				})
+			})
+			var checkFirst=true;
+			$(window).on('scroll', function() {
+					waterFall();
+					var height=$('.hobbies').offset().top;
+					var scrollTop=$(window).scrollTop();
+//					if(checkFirst&&scrollTop>=height/2){
+//						$('.hobbies li').eq(0).slideDown(1000);
+//						$('.hobbies li').eq(1).slideDown(2000);
+//						$('.hobbies li').eq(2).slideDown(3000);
+//						checkFirst=false;
+//					}
+					checkNow();
+				})
+		})
+		
+		function checkNow(){
+			var itemLists=["Info","Hob","Skills","Exp","Contact"];
+			var top=$(document).scrollTop();
+					var currentId='';
+					var aIndex=0;
+					var menu=$('#menu');
+					var items=$("#content").find(".item")//jQuery通过id查询比通过class查询要快速，所以采用这个办法，效率比较好
+					items.each(function(index,value){
+						var now=$(this);
+						var itemTop=now.offset().top;
+						if(top>=itemTop-200){
+							currentId="#"+now.attr('id');
+							//console.log(currentId)
+							aIndex=index;
+						}else{
+							return false;
+						}
+					})
+					var currentLink=menu.find('.long');
+					if(currentId&&currentLink.find('a').attr('href')!=currentId){
+						currentLink.removeClass("long").addClass("short");
+						currentLink.children().html("");
+						menu.find("[href="+currentId+"]").parent().removeClass("short").addClass("long");
+						menu.find("[href="+currentId+"]").html(itemLists[aIndex]);
+						console.log(currentLink.find('a').attr('href')+" "+currentId)
+					}
+		}
+		
+		function waterFall() {
+				var boxs = $('#images>div');
+				var boxWidth = boxs.eq(0).outerWidth(); //outerWidth包括padding，border的寬度
+				var cols = Math.floor($(window).width() / boxWidth)-1;
+				$('#images').width(boxWidth * cols).css('margin', '0 auto');
+				var heightArr = [];
+				boxs.each(function(index, value) {
+					var height = boxs.eq(index).outerHeight();
+					if(index < cols) {
+						heightArr[index] = height;
+					} else {
+						var minH = Math.min.apply(null, heightArr);
+						var minHIndex = $.inArray(minH, heightArr);
+						$(value).css({
+							'position': 'absolute',
+							'top': minH + 'px',
+							'left': minHIndex * boxWidth + 'px'
+						})
+						heightArr[minHIndex] += boxs.eq(index).outerHeight();
+					}
+				})
+				var maxH=Math.max.apply(null,heightArr);
+				$('#images').height(maxH);
+			}
+	</script>
+	<script type="text/javascript">
+			//关键帧
+			window.requestAnimationFrame = (function() {
+				return window.requestAnimationFrame ||
+					window.webkitRequestAnimationFrame ||
+					mozRequestAnimationFrame || function(callback) {
+						window.setTimeout(callback, 1000 / 60);
+					}
+			})();
+			var canvas = document.getElementById("canvas");
+			canvas.width = document.body.scrollWidth;
+			canvas.height = document.body.scrollHeight;
+			var ctx = canvas.getContext("2d");
+			var canvasW = canvas.width;
+			var canvasH = canvas.height;
+			var stopColor = "rgba(0,0,0,0.1)";
+			var beginColor = ["grey","darkgrey","lightgrey"];
+
+			function Particle() {
+				this.x = randomMax(canvasW);
+				this.y = randomMax(canvasH);
+				this.dx = -5 + randomMax(10);
+				this.dy = -5 + randomMax(10);
+				this.r = randomMax(50);
+				this.color = beginColor[Math.floor(Math.random() *
+					(beginColor.length - 1))];
+			}
+			//对象的属性
+			Particle.prototype.draw = function() {
+				this.x += this.dx;
+				this.y += this.dy;
+				if(this.x < 0 || this.x > canvas.width ||
+					this.y < 0 || this.y > canvas.height ||
+					(this.dx === 0 && this.dy === 0)) {
+					this.x = randomMax(canvasW);
+					this.y = randomMax(canvasH);
+					this.dx = -5 + randomMax(10);
+					this.dy = -5 + randomMax(10);
+				}
+				ctx.beginPath();
+				var fillStyle = ctx.createRadialGradient(this.x,
+					this.y, this.r * 0.01, this.x, this.y, this.r);
+				fillStyle.addColorStop(0, this.color);
+				fillStyle.addColorStop(1, stopColor);
+				ctx.fillStyle = fillStyle;
+				//画笔渐变色填充
+				ctx.arc(this.x, this.y, this.r, Math.PI * 2, false);
+				ctx.fill();
+				ctx.closePath();
+			}
+			var particles = [];
+			for(var i = 0; i < 70; i++) {
+				particles.push(new Particle());
+			}
+//			for(var j = 0; j < particles.length; j++) {
+//				particles[j].draw();
+//			}
+
+			function loop() {
+				ctx.clearRect(0, 0, canvasW, canvasH);
+				requestAnimationFrame(loop);
+				for(var j = 0; j < particles.length; j++) {
+					particles[j].draw();
+				}
+			}
+			//帧动画的递归调用进行画面渲染
+			loop();
+
+			function randomMax(max) {
+				return Math.floor(Math.random() * max);
+			}
+			//取最大数
+		</script>
+</html>
